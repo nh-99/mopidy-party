@@ -1958,6 +1958,7 @@ angular.module('partyApp', [])
 
   $scope.message = [];
   $scope.tracks  = [];
+  $scope.responses = [];
   $scope.tracksToLookup = [];
   $scope.maxTracksToLookupAtOnce = 50;
   $scope.loading = true;
@@ -2007,6 +2008,10 @@ angular.module('partyApp', [])
         'uri': [song.spotify_uri]
       }).done($scope.handleSearchResultInitial);
     });
+
+    setTimeout(() => {
+      console.log($scope.responses);
+    }, 70000);
   });
   mopidy.on('event:playbackStateChanged', function(event){
     $scope.currentState.paused = (event.new_state === 'paused');
@@ -2060,7 +2065,7 @@ angular.module('partyApp', [])
   $scope.handleBrowseResult = function(res){
 
     $scope.loading = false;
-    $scope.tracks  = [];
+    //$scope.tracks  = [];
     $scope.tracksToLookup = [];
 
     for(var i = 0; i < res.length; i++){
@@ -2099,6 +2104,7 @@ angular.module('partyApp', [])
   $scope.handleSearchResultInitial = function(res){
 
     $scope.loading = false;
+    $scope.responses.push(res);
 
     var _index = 0;
     var _found = true;
