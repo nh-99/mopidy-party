@@ -9,10 +9,6 @@
   margin-right: -20px;
 }
 
-body {
-	background-color: rgb(0, 0, 0);
-	background-image: url(http://www.zingerbugimages.com/backgrounds/tie_dye_candy_colors_seamless.jpg);
-	background-position: top left;
-	background-repeat: repeat;
-	background-attachment: fixed;
+#search {
+  display: none;
 }

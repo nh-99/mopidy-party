@@ -17,6 +17,11 @@
   </head>
   <body ng-controller="MainController">
     <div class="container-fluid" style="margin-top:20px">
+      <div class="row justify-content-md-center">
+        <div class="jumbotron">
+          <h1 class="display-4">ΔΩΓ</h1>
+        </div>
+      </div>
       <div class="row">
         <div class="col-4" id="controls">
           <!--
@@ -50,7 +55,7 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <form ng-submit="search()">
+          <form id="search" ng-submit="search()">
             <input type="text" role="search" class="form-control" placeholder="Search..." ng-model="searchField" ng-disabled="!ready">
           </form>
           <div ng-show="loading" class="container-fluid">
