@@ -2,7 +2,7 @@
 
 // TODO : add a mopidy service designed for angular, to avoid ugly $scope.$apply()...
 angular.module('partyApp', [])
-  .controller('MainController', function($scope) {
+  .controller('MainController', function($scope, $interval) {
 
   // Scope variables
 
@@ -84,6 +84,23 @@ angular.module('partyApp', [])
       $scope.$apply();
     });
   });
+
+  stop = $interval(function() {
+    $scope.tracks = [];
+
+    // Load in preloaded songs
+     var xmlHttp = new XMLHttpRequest();
+     xmlHttp.open( "GET", "http://172.16.4.62/", false ); // false for synchronous request
+     xmlHttp.send( null );
+     $scope.preloadedMusic = JSON.parse(xmlHttp.responseText);
+     console.log($scope.preloadedMusic);
+     
+    $scope.preloadedMusic.forEach(function(song) {
+      mopidy.library.search({
+        'uri': [song]
+      }).done($scope.handleSearchResultInitial);
+    });
+  }, 60000);
 
   $scope.printDuration = function(track){
 
